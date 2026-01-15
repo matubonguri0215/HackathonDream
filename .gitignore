@@ -1,0 +1,14 @@
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+.vs/
+*.csproj
+*.suo
+*DocumentLayout.json
+.sln
+*.sln
+**/EditorExtend/
