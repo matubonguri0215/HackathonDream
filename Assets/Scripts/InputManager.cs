@@ -15,10 +15,13 @@ namespace Input
         public static Vector2 GetAxisLeft()
         {
             Vector2 keyboardInput = Vector2.zero;
-            if (Keyboard.current.wKey.isPressed) keyboardInput.y += 1;
-            if (Keyboard.current.sKey.isPressed) keyboardInput.y -= 1;
-            if (Keyboard.current.aKey.isPressed) keyboardInput.x -= 1;
-            if (Keyboard.current.dKey.isPressed) keyboardInput.x += 1;
+            if (Keyboard.current != null)
+            {
+                if (Keyboard.current.wKey.isPressed) keyboardInput.y += 1;
+                if (Keyboard.current.sKey.isPressed) keyboardInput.y -= 1;
+                if (Keyboard.current.aKey.isPressed) keyboardInput.x -= 1;
+                if (Keyboard.current.dKey.isPressed) keyboardInput.x += 1;
+            }
             Vector2 gamepadInput = Gamepad.current != null ? Gamepad.current.leftStick.ReadValue() : Vector2.zero;
             return keyboardInput.normalized + gamepadInput;
         }
@@ -83,21 +86,21 @@ namespace Input
             return action switch
             {
                 ActionType.Shot =>
-                    Mouse.current.leftButton.wasPressedThisFrame || Gamepad.current.rightTrigger.wasPressedThisFrame,
+                    (Mouse.current?.leftButton.wasPressedThisFrame ?? false) || (Gamepad.current?.rightTrigger.wasPressedThisFrame ?? false),
                 ActionType.Blood =>
-                    Mouse.current.rightButton.wasPressedThisFrame || Gamepad.current.leftTrigger.wasPressedThisFrame,
+                    (Mouse.current?.rightButton.wasPressedThisFrame ?? false) || (Gamepad.current?.leftTrigger.wasPressedThisFrame ?? false),
                 ActionType.AimLock =>
-                    Mouse.current.middleButton.wasPressedThisFrame || Gamepad.current.rightStickButton.wasPressedThisFrame,
+                    (Mouse.current?.middleButton.wasPressedThisFrame ?? false) || (Gamepad.current?.rightStickButton.wasPressedThisFrame ?? false),
                 ActionType.WeaponSelector =>
-                    Keyboard.current.spaceKey.wasPressedThisFrame,
+                    Keyboard.current?.spaceKey.wasPressedThisFrame ?? false,
                 ActionType.Weapon1 =>
-                    Keyboard.current.digit1Key.wasPressedThisFrame,
+                    Keyboard.current?.digit1Key.wasPressedThisFrame ?? false,
                 ActionType.Weapon2 =>
-                    Keyboard.current.digit2Key.wasPressedThisFrame,
+                    Keyboard.current?.digit2Key.wasPressedThisFrame ?? false,
                 ActionType.Weapon3 =>
-                    Keyboard.current.digit3Key.wasPressedThisFrame,
+                    Keyboard.current?.digit3Key.wasPressedThisFrame ?? false,
                 ActionType.Weapon4 =>
-                    Keyboard.current.digit4Key.wasPressedThisFrame,
+                    Keyboard.current?.digit4Key.wasPressedThisFrame ?? false,
 
                 _ => false,
             };
@@ -107,21 +110,21 @@ namespace Input
             return action switch
             {
                 ActionType.Shot =>
-                    Mouse.current.leftButton.isPressed || Gamepad.current.rightTrigger.isPressed,
+                    (Mouse.current?.leftButton.isPressed ?? false) || (Gamepad.current?.rightTrigger.isPressed ?? false),
                 ActionType.Blood =>
-                    Mouse.current.rightButton.isPressed || Gamepad.current.leftTrigger.isPressed,
+                    (Mouse.current?.rightButton.isPressed ?? false) || (Gamepad.current?.leftTrigger.isPressed ?? false),
                 ActionType.AimLock =>
-                    Mouse.current.middleButton.isPressed || Gamepad.current.rightStickButton.isPressed,
+                    (Mouse.current?.middleButton.isPressed ?? false) || (Gamepad.current?.rightStickButton.isPressed ?? false),
                 ActionType.WeaponSelector =>
-                    Keyboard.current.spaceKey.isPressed,
+                    Keyboard.current?.spaceKey.isPressed ?? false,
                 ActionType.Weapon1 =>
-                    Keyboard.current.digit1Key.isPressed,
+                    Keyboard.current?.digit1Key.isPressed ?? false,
                 ActionType.Weapon2 =>
-                    Keyboard.current.digit2Key.isPressed,
+                    Keyboard.current?.digit2Key.isPressed ?? false,
                 ActionType.Weapon3 =>
-                    Keyboard.current.digit3Key.isPressed,
+                    Keyboard.current?.digit3Key.isPressed ?? false,
                 ActionType.Weapon4 =>
-                    Keyboard.current.digit4Key.isPressed,
+                    Keyboard.current?.digit4Key.isPressed ?? false,
                 _ => false,
             };
         }
@@ -130,21 +133,21 @@ namespace Input
             return action switch
             {
                 ActionType.Shot =>
-                    Mouse.current.leftButton.wasReleasedThisFrame || Gamepad.current.rightTrigger.wasReleasedThisFrame,
+                    (Mouse.current?.leftButton.wasReleasedThisFrame ?? false) || (Gamepad.current?.rightTrigger.wasReleasedThisFrame ?? false),
                 ActionType.Blood =>
-                    Mouse.current.rightButton.wasReleasedThisFrame || Gamepad.current.leftTrigger.wasReleasedThisFrame,
+                    (Mouse.current?.rightButton.wasReleasedThisFrame ?? false) || (Gamepad.current?.leftTrigger.wasReleasedThisFrame ?? false),
                 ActionType.AimLock =>
-                    Mouse.current.middleButton.wasReleasedThisFrame || Gamepad.current.rightStickButton.wasReleasedThisFrame,
+                    (Mouse.current?.middleButton.wasReleasedThisFrame ?? false) || (Gamepad.current?.rightStickButton.wasReleasedThisFrame ?? false),
                 ActionType.WeaponSelector =>
-                    Keyboard.current.spaceKey.wasReleasedThisFrame,
+                    Keyboard.current?.spaceKey.wasReleasedThisFrame ?? false,
                 ActionType.Weapon1 =>
-                    Keyboard.current.digit1Key.wasReleasedThisFrame,
+                    Keyboard.current?.digit1Key.wasReleasedThisFrame ?? false,
                 ActionType.Weapon2 =>
-                    Keyboard.current.digit2Key.wasReleasedThisFrame,
+                    Keyboard.current?.digit2Key.wasReleasedThisFrame ?? false,
                 ActionType.Weapon3 =>
-                    Keyboard.current.digit3Key.wasReleasedThisFrame,
+                    Keyboard.current?.digit3Key.wasReleasedThisFrame ?? false,
                 ActionType.Weapon4 =>
-                    Keyboard.current.digit4Key.wasReleasedThisFrame,
+                    Keyboard.current?.digit4Key.wasReleasedThisFrame ?? false,
                 _ => false,
             };
         }
