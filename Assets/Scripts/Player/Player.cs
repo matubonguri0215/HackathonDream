@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
 {
-
+    [SerializeField]
     private PlayerStatus _status;
     private PlayerMoveComponent _moveComponent;
     [SerializeField]
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Init()
     {
-        _status = new PlayerStatus();
+        
         
         _state = new PlayerState();
 
@@ -37,7 +37,8 @@ public class Player : MonoBehaviour, IDamageable
         {
             _moveComponent = this.gameObject.AddComponent<PlayerMoveComponent>();
         }
-
+        Debug.Log("MoveForce "+_status.MoveForce);
+        _moveComponent.Inject(_status);
         //武器生成を行うならここで行う
 
     }
@@ -68,8 +69,10 @@ public interface IWeaponCoolTimeHandle : IWeaponCoolTimeGetable, IWeaponCoolTime
 
 }
 
+[Serializable]
 public class PlayerStatus : EntityStatus, IWeaponCoolTimeHandle
 {
+    [SerializeField]
     private float _weaponChangeCoolTime;
     public float WeaponChangeCoolTime
     {

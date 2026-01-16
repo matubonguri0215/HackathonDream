@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2933b378035229a40991d6655f374404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 7355476329872122208, guid: 370f14a7b6d8c3c43acf9fc6c96f2d3a,
+  _playerPrefab: {fileID: 3153868364964588024, guid: 370f14a7b6d8c3c43acf9fc6c96f2d3a,
     type: 3}
   _playerSpawnPoint: {fileID: 902792198}
 --- !u!4 &902792198

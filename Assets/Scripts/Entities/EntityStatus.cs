@@ -23,6 +23,7 @@ public interface IMoveForceSetable
 
 public interface IMoveForceHandle:IMoveForceGetable,IMoveForceSetable{}
 
+[Serializable]
 public class EntityStatus:IHPHandle,IMoveForceHandle
 {
 

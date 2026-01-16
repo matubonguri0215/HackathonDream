@@ -276,7 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 964379646112864949}
   - component: {fileID: 1935042635487565222}
-  - component: {fileID: 7355476329872122208}
+  - component: {fileID: 3153868364964588024}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -356,7 +356,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7355476329872122208
+--- !u!114 &3153868364964588024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -368,4 +368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c297cadfc15d5e547a28c4d74fe6fcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _status:
+    _hp: 6
+    _moveForce: 5
+    _weaponChangeCoolTime: 5
   _weapons: []
