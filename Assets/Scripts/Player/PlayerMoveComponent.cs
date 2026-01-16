@@ -15,4 +15,6 @@ public class PlayerMoveComponent:MonoBehaviour,IInjectable<IMoveForceGetable>
         transform.position += (Vector3)input * (_moveForceGetable.MoveForce * delta);
     }
 
+
+
 }
