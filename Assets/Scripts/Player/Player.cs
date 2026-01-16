@@ -42,9 +42,9 @@ public class Player : MonoBehaviour, IDamageable
 
     }
 
-    public void Controll(Vector2 input, bool isShot, bool isCharge)
+    public void Controll(Vector2 inputL,Vector2 inputR, bool isShot, bool isCharge)
     {
-        _moveComponent.OnCallMove(input, Time.deltaTime);
+        _moveComponent.OnCallMove(inputL, Time.deltaTime);
     }
 
     void IDamageable.Damage(int damage)

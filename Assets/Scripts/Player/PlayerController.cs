@@ -26,14 +26,15 @@ public class PlayerController:MonoBehaviour
     {
         bool isShot = InputManager.IsPressed(ActionType.Shot);
         bool isCharge = InputManager.IsPressed(ActionType.Blood);
-        Vector2 input = InputManager.Instance.GetAxis();
-        Controll(input, isShot, isCharge);
+        Vector2 leftInput = InputManager.GetAxisLeft();
+        Vector2 rightInput = InputManager.GetAxisRight();
+        Controll(leftInput,rightInput,isShot, isCharge);
     }
 
     //毎フレーム呼び出しなのでインライン化
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Controll(Vector2 input, bool isShot, bool isCharge)
+    public void Controll(Vector2 inputL,Vector2 inputR, bool isShot, bool isCharge)
     {
-        _player.Controll(input, isShot, isCharge);
+        _player.Controll(inputL, inputR,isShot, isCharge);
     }
 }
