@@ -2,7 +2,7 @@ using Input;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class PlayerController:MonoBehaviour
+public class PlayerController:IStartable, IUpdatable
 {
     private Player _player;
     public PlayerController(Player player)
@@ -12,11 +12,18 @@ public class PlayerController:MonoBehaviour
     }
     private PlayerController() { }
 
-    private void Awake()
+    ~PlayerController()
+    {
+        MainLoopEntry.Instance.UnregisterStartable(this);
+        MainLoopEntry.Instance.UnregisterUpdatable(this);
+    }
+    void IStartable.OnStart()
     {
         _player.Init();
     }
-    private void Update()
+   
+
+    void IUpdatable.OnUpdate()
     {
         OnUpdateController();
     }

@@ -50,7 +50,12 @@ public class MainLoopEntry : MonoSingleton<MainLoopEntry>, IMainLoopEntryRegista
     {
         _updatables.Remove(updatable);
     }
-
+    protected override void Awake()
+    {
+        base.Awake();
+        OnSceneChanged();
+        
+    }
     private void Start()
     {
         foreach (IStartable startable in _startables)
@@ -65,5 +70,12 @@ public class MainLoopEntry : MonoSingleton<MainLoopEntry>, IMainLoopEntryRegista
         {
             updatable.OnUpdate();
         }
+    }
+
+    private void OnSceneChanged()
+    {
+        _startables.Clear();
+        _updatables.Clear();
+        //_isStarted = true;
     }
 }
