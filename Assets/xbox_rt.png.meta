@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0a1cde5bbe1e048409cd0673908e25a2
+guid: 616d32c1b48a4a34fb8bab787b751a88
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5553611877398946228
-    second: bar_round_gloss_large_0
+      213: 3336128370510153928
+    second: xbox_rt_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bar_round_gloss_large_0
+      name: xbox_rt_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 96
-        height: 24
+        x: 7
+        y: 9
+        width: 50
+        height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 23, y: 0, z: 25, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4b121c40494621d40800000000000000
-      internalID: 5553611877398946228
+      spriteID: 8c84c51d31f4c4e20800000000000000
+      internalID: 3336128370510153928
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 426ba4c5e521baf45b3366e18989637c
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      bar_round_gloss_large_0: 5553611877398946228
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
