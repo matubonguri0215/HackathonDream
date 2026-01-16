@@ -12,7 +12,7 @@ namespace Input
         private static ReactiveProperty<bool> isAimLockInput = new ReactiveProperty<bool>(false);
         private static ReactiveProperty<bool> isWeaponSelectorInput = new ReactiveProperty<bool>(false);
 
-        public Vector2 GetAxis()
+        public static Vector2 GetAxisLeft()
         {
             Vector2 keyboardInput = Vector2.zero;
             if (Keyboard.current.wKey.isPressed) keyboardInput.y += 1;
@@ -22,6 +22,30 @@ namespace Input
             Vector2 gamepadInput = Gamepad.current != null ? Gamepad.current.leftStick.ReadValue() : Vector2.zero;
             return keyboardInput.normalized + gamepadInput;
         }
+        public static Vector2 GetAxisRight()
+        {
+            if (Mouse.current != null)
+            {
+                // 画面中央のワールド座標
+                Vector2 screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+                Vector3 worldCenter = Camera.main.ScreenToWorldPoint(new Vector3(screenCenter.x, screenCenter.y, Camera.main.nearClipPlane));
+
+                // マウスのワールド座標
+                Vector2 mousePos = Mouse.current.position.ReadValue();
+                Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, Camera.main.nearClipPlane));
+
+                // 画面中央からマウスへの方向ベクトル
+                Vector2 mouseInput = ((Vector2)mouseWorld - (Vector2)worldCenter).normalized;
+
+                Vector2 gamepadInput = Gamepad.current != null ? Gamepad.current.rightStick.ReadValue() : Vector2.zero;
+
+                // どちらか入力されている方を優先
+                return mouseInput.magnitude > 0.01f ? mouseInput : gamepadInput;
+            }
+
+            return Gamepad.current != null ? Gamepad.current.rightStick.ReadValue() : Vector2.zero;
+        }
+
 
         public static void SubscribeInput(ActionType action, System.Action<bool> onChanged)
         {
