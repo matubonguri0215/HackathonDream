@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d080579c730bd24b8147a0cb4f6005d, type: 3}
+  m_Name: Title
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 0}
+  audioMixerGroup: {fileID: 0}
+  volume: 1
+  pitch: 1
+  priority: 128
+  id: 0
+  loop: 1
+  introLength: 0
