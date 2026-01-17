@@ -28,20 +28,30 @@ public class EntityStatus:IHPHandle,IMoveForceHandle
 {
 
     [SerializeField]
-    private int _hp;
+    protected int _hp;
     public int HP
     {
         get => _hp;
         set
         {
             _hp = value;
-            OnHPChanged.Invoke(_hp);
+            if (value > 0)
+            {
+                OnHPIncreased.Invoke(_hp);
+            }
+            else
+            {
+                OnHPdecreased.Invoke(_hp);
+                OnHPChanged.Invoke(_hp);
+            }
         }
     }
     public event Action<int> OnHPChanged;
+    public event Action<int> OnHPdecreased;
+    public event Action<int> OnHPIncreased;
 
     [SerializeField]
-    private float _moveForce;
+    protected float _moveForce;
     public float MoveForce
     {
         get => _moveForce;
