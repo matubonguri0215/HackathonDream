@@ -4,13 +4,15 @@ using UnityEngine;
 
 
 
-public class Player : MonoBehaviour, IDamageable,IHealable
+public class Player : MonoBehaviour, IDamageable,IHealable,IEntityTransformGetable
 {
     [SerializeField]
     private PlayerStatus _status;
     private PlayerMoveComponent _moveComponent;
     [SerializeField]
     private WeaponBase[] _weapons;
+    [SerializeField]
+    private Transform _weaponPosition;
     private WeaponBase _currentWeapon;
     private PlayerState _state;
 
@@ -29,7 +31,15 @@ public class Player : MonoBehaviour, IDamageable,IHealable
 
         _state = new PlayerState();
 
-        InitComponent();
+        if (_weapons != null)
+        {
+            if (_weapons.Length > 0)
+            {
+                Vector2 weaponPos = _weaponPosition != null ? _weaponPosition.position : this.transform.position;
+                _currentWeapon = Instantiate(_weapons[0], weaponPos,Quaternion.identity,this.transform);
+            }
+        }
+            InitComponent();
     }
 
 
@@ -53,6 +63,10 @@ public class Player : MonoBehaviour, IDamageable,IHealable
         Vector3 dir = inputR;
         float z = (Mathf.Atan2(inputR.y, inputR.x)-Mathf.PI/2)*Mathf.Rad2Deg;
         this.gameObject.transform.rotation = Quaternion.Euler(0,0,z);
+        if(_currentWeapon!=null)
+        {
+            _currentWeapon.OnCallShot(_status.HP/_status.MaxHP,transform.forward);
+        }
     }
 
     void IDamageable.Damage(int damage)

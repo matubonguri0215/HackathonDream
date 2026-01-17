@@ -26,7 +26,7 @@ public class EnemyAICaller : IStartable, IUpdatable
 
     }
 
-    private List<EnemyBase> _enemyAIs = new ();
+    private List<IEnemyAI> _enemyAIs = new ();
     void IStartable.OnStart()
     {
 
@@ -34,12 +34,15 @@ public class EnemyAICaller : IStartable, IUpdatable
 
     void IUpdatable.OnUpdate()
     {
-
+       foreach(EnemyBase enemy in _enemyAIs)
+        {
+            enemy.OnCallAI();
+        }
     }
 
-    public static void Register(EnemyBase enemy)
+    public static void Register(IEnemyAI enemy)
     {
-
+        Instance._enemyAIs.Add(enemy);
     }
 
 }

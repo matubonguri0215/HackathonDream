@@ -1,6 +1,11 @@
 using UnityEngine;
 
-public abstract class EnemyBase : MonoBehaviour, IDamageable
+
+public interface IEnemyAI
+{
+    void OnCallAI();
+}
+public abstract class EnemyBase : MonoBehaviour, IDamageable,IEnemyAI
 {
 
     [SerializeField]

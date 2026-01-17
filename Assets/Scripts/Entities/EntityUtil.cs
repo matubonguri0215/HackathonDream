@@ -1,4 +1,4 @@
-
+using UnityEngine;
 
 public interface IDamageable
 {
@@ -8,6 +8,11 @@ public interface IDamageable
 public interface IHealable
 {
     void Heal(int healAmount);
+}
+
+public interface IEntityTransformGetable
+{
+    Transform transform { get; }
 }
 
 public class EntityState
