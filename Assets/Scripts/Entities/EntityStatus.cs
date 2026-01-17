@@ -34,7 +34,7 @@ public class EntityStatus:IHPHandle,IMoveForceHandle
         set
         {
             _maxHP = value;
-            OnMaxHPChanged.Invoke(_maxHP);
+            OnMaxHPChanged?.Invoke(_maxHP);
         }
     }
     public event Action<int> OnMaxHPChanged;
@@ -49,13 +49,14 @@ public class EntityStatus:IHPHandle,IMoveForceHandle
             _hp = value;
             if (value > 0)
             {
-                OnHPIncreased.Invoke(_hp);
+                OnHPIncreased?.Invoke(_hp);
             }
             else
             {
-                OnHPdecreased.Invoke(_hp);
-                OnHPChanged.Invoke(_hp);
+                OnHPdecreased?.Invoke(_hp);
+                
             }
+            OnHPChanged?.Invoke(_hp);
         }
     }
     public event Action<int> OnHPChanged;
@@ -70,7 +71,7 @@ public class EntityStatus:IHPHandle,IMoveForceHandle
         set
         {
             _moveForce = value;
-            OnMoveForceChanged.Invoke(_moveForce);
+            OnMoveForceChanged?.Invoke(_moveForce);
         }
     }
     public event Action<float> OnMoveForceChanged;
