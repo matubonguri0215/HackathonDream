@@ -1,19 +1,48 @@
 using UnityEngine;
 
-public abstract class WeaponBulletBase:MonoBehaviour
+public abstract class WeaponBulletBase : MonoBehaviour
 {
-
     protected float _lifeTime;
     protected float _moveSpeed;
     protected Vector2 _moveDirection;
     protected float _damage;
+    protected float _elapsedTime;
 
-    public virtual void Initialize(float lifeTime,float moveSpeed,Vector2 moveDirection,float damage)
+
+
+       public virtual void Initialize(Vector2 moveDirection, float damage, float lifeTime = 3f, float moveSpeed = 3f)
     {
         _lifeTime = lifeTime;
         _moveSpeed = moveSpeed;
         _moveDirection = moveDirection.normalized;
         _damage = damage;
+        _elapsedTime = 0f;
     }
 
+    private void Update()
+    {
+        Move();
+        
+        _elapsedTime += Time.deltaTime;
+        if (_elapsedTime >= _lifeTime)
+        {
+            OnLifeTimeEnd();
+        }
+    }
+
+    /// <summary>
+    /// 弾の移動処理
+    /// </summary>
+    protected virtual void Move()
+    {
+        transform.position += (Vector3)(_moveDirection * _moveSpeed * Time.deltaTime);
+    }
+
+    /// <summary>
+    /// 寿命が終了した時の処理
+    /// </summary>
+    protected virtual void OnLifeTimeEnd()
+    {
+        gameObject.SetActive(false);
+    } 
 }

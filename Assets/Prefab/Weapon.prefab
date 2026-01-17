@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8055169970471264715}
+  - component: {fileID: 6650324708747827451}
   - component: {fileID: 1621421593526376454}
   m_Layer: 0
   m_Name: Weapon
@@ -31,8 +32,26 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3031447154369886668}
+  - {fileID: 5317284675356912700}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6650324708747827451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763515884236025449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2711f4b52485b42af137c63574adcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coolDownTime: 3
+  _weaponDamage: 1
+  _bulletBase: {fileID: 4733608305355661727, guid: 65e647ccc7c52ee4ebcc0ccdc41dc6a0,
+    type: 3}
+  _InitBulletPos: {fileID: 5317284675356912700}
 --- !u!212 &1621421593526376454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,6 +108,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4274432693900678480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5317284675356912700}
+  m_Layer: 0
+  m_Name: ShotPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5317284675356912700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4274432693900678480}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.52, z: 0}
+  m_LocalScale: {x: 5.0195765, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8055169970471264715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7174547231127003697
 GameObject:
   m_ObjectHideFlags: 0
