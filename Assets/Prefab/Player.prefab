@@ -230,7 +230,7 @@ MonoBehaviour:
     _weaponChangeCoolTime: 0
     _chargeMaxTime: 0
   _weapons:
-  - {fileID: 6650324708747827451, guid: 41c92318b6584854c96d07e21bad3b0c, type: 3}
+  - {fileID: 3964511921747553920, guid: b6b01c97cf180e5438dedb852d2dc51d, type: 3}
   _weaponPosition: {fileID: 5629301411959159556}
 --- !u!1 &8566164097491161782
 GameObject:

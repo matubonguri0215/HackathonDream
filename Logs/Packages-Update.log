@@ -62,3 +62,11 @@ The following packages were updated:
   com.unity.visualscripting from version 1.9.0 to 1.9.5
 The following packages were removed:
   com.unity.textmeshpro@3.0.6
+
+=== Sat Jan 17 14:44:43 2026
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.nuget.newtonsoft-json@3.2.1
