@@ -83,12 +83,13 @@ public class Player : MonoBehaviour, IDamageable,IHealable,IEntityTransformGetab
         }
         if(isCharge)
         {
-
+            Charge();
         }
 
         if(_currentWeapon!=null)
         {
             _currentWeapon.OnCallShot(_status.HP/_status.MaxHP,attackDir);
+            _isCharging = false;
         }
     }
 
@@ -98,10 +99,21 @@ public class Player : MonoBehaviour, IDamageable,IHealable,IEntityTransformGetab
     private float _lifePartialDamage;
     private void Charge()
     {
-        _currentHp = _status.HP;
-        _lifePartialDamage += Time.deltaTime;
+        if(!_isCharging)
+        {
+            _currentHp = _status.HP;
+            _isCharging = true;
+        }
+        
+        _lifePartialDamage += Time.deltaTime;//ここで割りあい
+        _status.CurrentChargeTime += Time.deltaTime;
+        if (_lifePartialDamage>=1)
+        {
+            Damage(1);
+            _lifePartialDamage = 0;
+        }
     }
-    void IDamageable.Damage(int damage)
+    public void Damage(int damage)
     {
         _status.HP -= damage;
 
