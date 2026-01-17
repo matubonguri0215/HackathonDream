@@ -21,5 +21,6 @@ public class EnemyBuilder:MonoBehaviour
         EnemyBase enemy = Instantiate<EnemyBase>(enemiePrefabs[rnd], Vector3.zero, Quaternion.identity);
         EnemyAICaller.Register(enemy);
         enemy.Inject(PlayerDataProvider.GetPlayer());
+        enemy.BaseInit();
     }
 }

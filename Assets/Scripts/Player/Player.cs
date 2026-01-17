@@ -9,6 +9,7 @@ public class Player : MonoBehaviour, IDamageable,IHealable,IEntityTransformGetab
     [SerializeField]
     private PlayerStatus _status;
     private PlayerMoveComponent _moveComponent;
+
     [SerializeField]
     private WeaponBase[] _weapons;
     [SerializeField]
@@ -16,8 +17,19 @@ public class Player : MonoBehaviour, IDamageable,IHealable,IEntityTransformGetab
     private WeaponBase _currentWeapon;
     private PlayerState _state;
 
-    
+    public event Action OnPlayerDead;
 
+    public void PlayerInit()
+    {
+        _status.OnHPChanged += OnHPChanged;
+    }
+    private void OnHPChanged(int hp)
+    {
+        if(hp<=0)
+        {
+            OnPlayerDead?.Invoke();
+        }
+    }
 
     public PlayerStatus PlayerStatus
     {
@@ -88,7 +100,7 @@ public class Player : MonoBehaviour, IDamageable,IHealable,IEntityTransformGetab
 
         if(_currentWeapon!=null)
         {
-            _currentWeapon.OnCallShot(_status.HP/_status.MaxHP,attackDir);
+            _currentWeapon.OnCallShot(_chargedDamage/_status.MaxHP,attackDir);
             _isCharging = false;
         }
     }
@@ -97,6 +109,7 @@ public class Player : MonoBehaviour, IDamageable,IHealable,IEntityTransformGetab
     private int _currentHp;
     private int _chargeHp;
     private float _lifePartialDamage;
+    private float _chargedDamage = 0;
     private void Charge()
     {
         if(!_isCharging)
@@ -104,13 +117,15 @@ public class Player : MonoBehaviour, IDamageable,IHealable,IEntityTransformGetab
             _currentHp = _status.HP;
             _isCharging = true;
         }
-        
-        _lifePartialDamage += Time.deltaTime;//ここで割りあい
+        if(_chargedDamage>=_currentHp)
+
+        _lifePartialDamage += Time.deltaTime * (_currentHp / _status.MaxHP);
         _status.CurrentChargeTime += Time.deltaTime;
         if (_lifePartialDamage>=1)
         {
             Damage(1);
             _lifePartialDamage = 0;
+            _chargedDamage+=1;
         }
     }
     public void Damage(int damage)
@@ -178,6 +193,8 @@ public class PlayerStatus : EntityStatus, IWeaponCoolTimeHandle
         }
     }
     public event Action<float> OnChargeTimeChanged;
+    [SerializeField,Tooltip("0～1まで")]
+    private float _chargeableMaxHpValue = 0.8f;
 
 }
 

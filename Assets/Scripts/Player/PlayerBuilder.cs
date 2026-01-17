@@ -20,6 +20,7 @@ public class PlayerBuilder:MonoBehaviour
         Vector3 spawnPoint = _playerSpawnPoint != null ? _playerSpawnPoint.position : Vector3.zero;
 
         Player playerInstance = Instantiate(_playerPrefab, spawnPoint, Quaternion.identity);
+        playerInstance.PlayerInit();
         _playerController = new PlayerController(playerInstance);
         MainLoopEntry.Instance.RegisterStartable(_playerController);
         MainLoopEntry.Instance.RegisterUpdatable(_playerController);
