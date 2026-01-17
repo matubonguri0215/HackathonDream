@@ -117,7 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4194304
 --- !u!58 &5296839267452190591
 CircleCollider2D:
   m_ObjectHideFlags: 0

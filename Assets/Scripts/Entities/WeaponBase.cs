@@ -5,6 +5,8 @@ public abstract class WeaponBase:MonoBehaviour
     [SerializeField]
     private protected float _coolDownTime;
     [SerializeField]
+    private protected float _moveSpeed;
+    [SerializeField]
     private protected float _weaponDamage;
     [SerializeField]
     private protected WeaponBulletBase _bulletBase;

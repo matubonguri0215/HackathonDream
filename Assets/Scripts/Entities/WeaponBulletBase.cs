@@ -11,7 +11,7 @@ public abstract class WeaponBulletBase : MonoBehaviour
 
     protected HitChceker _hitChceker;
 
-    private void Start()
+    private void Awake()
     {
         _hitChceker = GetComponent<HitChceker>();
 
@@ -37,6 +37,8 @@ public abstract class WeaponBulletBase : MonoBehaviour
         {
             OnLifeTimeEnd();
         }
+
+        _hitChceker.CheckCollision();
     }
 
     /// <summary>
@@ -52,7 +54,7 @@ public abstract class WeaponBulletBase : MonoBehaviour
     /// </summary>
     protected virtual void OnLifeTimeEnd()
     {
-        gameObject.SetActive(false);
+        Destroy(this.gameObject);    
     }
 
     /// <summary>
@@ -62,8 +64,16 @@ public abstract class WeaponBulletBase : MonoBehaviour
     {
         // ダメージを与える
         damageable.Damage((int)_damage);
+      
+        Destroy(this.gameObject);
+    }
 
-        // 弾を非アクティブ化（オブジェクトプールに戻す）
-        gameObject.SetActive(false);
+    private void OnDestroy()
+    {
+        // イベント購読解除
+        if (_hitChceker != null)
+        {
+            _hitChceker.OnHit -= HandleOnHit;
+        }
     }
 }

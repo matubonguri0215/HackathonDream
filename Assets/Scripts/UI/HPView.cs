@@ -21,16 +21,21 @@ public class HPView : MonoBehaviour
     private Color onDamageColor;
     private Color originalColor;
 
+    private int maxHP = 100;
+
     private void Start()
     {
         originalColor = hpTxt.color;
         onDamage.AddListener(PlayFlashDamage);
+        PlayerStatus status = PlayerDataProvider.GetPlayer().PlayerStatus;
+        status.OnHPChanged += SetHP;
+        maxHP = status.MaxHP;
     }
     private void PlayFlashDamage()
     {
         StartCoroutine(FlashDamageColor());
     }
-    public void SetHP(int currentHP, int maxHP)
+    public void SetHP(int currentHP)
     {
         hpSlider.fillAmount = (float)currentHP / maxHP;
         hpTxt.text = $"{currentHP}";
