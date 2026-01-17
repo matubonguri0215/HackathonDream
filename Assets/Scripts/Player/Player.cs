@@ -18,6 +18,10 @@ public class Player : MonoBehaviour, IDamageable
     {
         get => _status;
     }
+    public PlayerState PlayerState
+    {
+        get => _state;
+    }
 
     public void Init()
     {
@@ -95,6 +99,24 @@ public class PlayerStatus : EntityStatus, IWeaponCoolTimeHandle
     }
     public event Action<float> OnWeaponCoolTimeChanged;
 
+
+    [SerializeField]
+    private float _chargeMaxTime;
+    private float _currentChargeTime;
+    public float ChargeMaxTime
+    {
+        get => _chargeMaxTime;
+    }
+    public float CurrentChargeTime
+    {
+        get => _currentChargeTime;
+        set
+        {
+            _currentChargeTime = Mathf.Clamp(value, 0, _chargeMaxTime);
+            OnChargeTimeChanged?.Invoke(_currentChargeTime);
+        }
+    }
+    public event Action<float> OnChargeTimeChanged;
 
 }
 
