@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -9,8 +10,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable,IEnemyAI,IInjectabl
 {
 
     [SerializeField]
-    private EnemyStatus _stataus;
-    private Transform _playerTransform;
+    protected EnemyStatus _stataus;
+    protected Transform _playerTransform;
 
     public EnemyStatus Stataus
     {
@@ -30,7 +31,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable,IEnemyAI,IInjectabl
     }
 }
 
-[SerializeField]
+[Serializable]
 public class EnemyStatus:EntityStatus
 {
 
