@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(HitChceker))]
 public abstract class WeaponBulletBase : MonoBehaviour
 {
     protected float _lifeTime;
@@ -8,9 +9,17 @@ public abstract class WeaponBulletBase : MonoBehaviour
     protected float _damage;
     protected float _elapsedTime;
 
+    protected HitChceker _hitChceker;
 
+    private void Start()
+    {
+        _hitChceker = GetComponent<HitChceker>();
 
-       public virtual void Initialize(Vector2 moveDirection, float damage, float lifeTime = 3f, float moveSpeed = 3f)
+        // イベントを購読（登録）
+        _hitChceker.OnHit += HandleOnHit;
+    }
+
+    public virtual void Initialize(Vector2 moveDirection, float damage, float lifeTime = 3f, float moveSpeed = 3f)
     {
         _lifeTime = lifeTime;
         _moveSpeed = moveSpeed;
@@ -44,5 +53,17 @@ public abstract class WeaponBulletBase : MonoBehaviour
     protected virtual void OnLifeTimeEnd()
     {
         gameObject.SetActive(false);
-    } 
+    }
+
+    /// <summary>
+    /// ヒット時の処理
+    /// </summary>
+    private void HandleOnHit(IDamageable damageable)
+    {
+        // ダメージを与える
+        damageable.Damage((int)_damage);
+
+        // 弾を非アクティブ化（オブジェクトプールに戻す）
+        gameObject.SetActive(false);
+    }
 }
