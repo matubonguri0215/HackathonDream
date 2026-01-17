@@ -9,6 +9,7 @@ public class EnemyBuilder:MonoBehaviour
     private void Awake()
     {
         int rnd = Random.Range(0, enemiePrefabs.Length);
-        Instantiate(enemiePrefabs[rnd], Vector3.zero, Quaternion.identity);
+        EnemyBase enemy=Instantiate<EnemyBase>(enemiePrefabs[rnd], Vector3.zero, Quaternion.identity);
+        EnemyAICaller.Register(enemy);
     }
 }

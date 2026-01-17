@@ -16,6 +16,9 @@ public class Player : MonoBehaviour, IDamageable,IHealable,IEntityTransformGetab
     private WeaponBase _currentWeapon;
     private PlayerState _state;
 
+    
+
+
     public PlayerStatus PlayerStatus
     {
         get => _status;
@@ -60,15 +63,44 @@ public class Player : MonoBehaviour, IDamageable,IHealable,IEntityTransformGetab
     public void Controll(Vector2 inputL, Vector2 inputR, bool isShot, bool isCharge)
     {
         _moveComponent.OnCallMove(inputL, Time.deltaTime);
-        Vector3 dir = inputR;
-        float z = (Mathf.Atan2(inputR.y, inputR.x)-Mathf.PI/2)*Mathf.Rad2Deg;
-        this.gameObject.transform.rotation = Quaternion.Euler(0,0,z);
+       
+        Vector2 attackDir = Vector2.zero;
+
+        if (UnityEngine.InputSystem.Gamepad.current == null)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+            Vector2 dir = (Vector2)mousePos - (Vector2)this.transform.position;
+            float z = (Mathf.Atan2(dir.y, dir.x) - Mathf.PI / 2) * Mathf.Rad2Deg;
+            this.gameObject.transform.rotation = Quaternion.Euler(0, 0, z);
+            attackDir = dir;
+        }
+        else
+        {
+            Vector3 dir = inputR;
+            float z = (Mathf.Atan2(inputR.y, inputR.x) - Mathf.PI / 2) * Mathf.Rad2Deg;
+            this.gameObject.transform.rotation = Quaternion.Euler(0, 0, z);
+            attackDir = dir;
+        }
+        if(isCharge)
+        {
+
+        }
+
         if(_currentWeapon!=null)
         {
-            _currentWeapon.OnCallShot(_status.HP/_status.MaxHP,transform.forward);
+            _currentWeapon.OnCallShot(_status.HP/_status.MaxHP,attackDir);
         }
     }
 
+    private bool _isCharging = false;
+    private int _currentHp;
+    private int _chargeHp;
+    private float _lifePartialDamage;
+    private void Charge()
+    {
+        _currentHp = _status.HP;
+        _lifePartialDamage += Time.deltaTime;
+    }
     void IDamageable.Damage(int damage)
     {
         _status.HP -= damage;
