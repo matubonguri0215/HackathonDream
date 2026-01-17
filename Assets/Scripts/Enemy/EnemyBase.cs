@@ -5,11 +5,12 @@ public interface IEnemyAI
 {
     void OnCallAI();
 }
-public abstract class EnemyBase : MonoBehaviour, IDamageable,IEnemyAI
+public abstract class EnemyBase : MonoBehaviour, IDamageable,IEnemyAI,IInjectable<IEntityTransformGetable>
 {
 
     [SerializeField]
     private EnemyStatus _stataus;
+    private Transform _playerTransform;
 
     public EnemyStatus Stataus
     {
@@ -22,6 +23,11 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable,IEnemyAI
     }
 
     public abstract void OnCallAI();
+
+    public void Inject(IEntityTransformGetable instance)
+    {
+        _playerTransform = instance.transform;
+    }
 }
 
 [SerializeField]

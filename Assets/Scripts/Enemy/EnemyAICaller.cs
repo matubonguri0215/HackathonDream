@@ -11,19 +11,28 @@ public class EnemyAICaller : IStartable, IUpdatable
             if (_instance == null)
             {
                 _instance = new EnemyAICaller();
-                MainLoopEntry.Instance.RegisterStartable(_instance);
-                MainLoopEntry.Instance.RegisterUpdatable(_instance);
+                _instance.RegisterEntry();
             }
             return _instance;
         }
     }
 
+    private void RegisterEntry()
+    {
+        MainLoopEntry.Instance.RegisterStartable(this);
+        MainLoopEntry.Instance.RegisterUpdatable(this);
+    }
 
     private EnemyAICaller()
     {
 
 
 
+    }
+    ~EnemyAICaller()
+    {
+        MainLoopEntry.Instance.UnregisterStartable(this);
+        MainLoopEntry.Instance.UnregisterUpdatable(this);
     }
 
     private List<IEnemyAI> _enemyAIs = new ();
