@@ -52,19 +52,27 @@ public abstract class WeaponBulletBase : MonoBehaviour
     /// <summary>
     /// 寿命が終了した時の処理
     /// </summary>
+    /// <summary>
+    /// 寿命が終了した時の処理
+    /// </summary>
     protected virtual void OnLifeTimeEnd()
     {
-        Destroy(this.gameObject);    
+        Kill();    
     }
 
     /// <summary>
     /// ヒット時の処理
     /// </summary>
-    private void HandleOnHit(IDamageable damageable)
+    protected virtual void HandleOnHit(IDamageable damageable)
     {
         // ダメージを与える
         damageable.Damage((int)_damage);
       
+        Kill();
+    }
+
+    protected virtual void Kill()
+    {
         Destroy(this.gameObject);
     }
 
