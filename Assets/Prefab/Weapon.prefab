@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2711f4b52485b42af137c63574adcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coolDownTime: 3
+  _coolDownTime: 0.5
+  _moveSpeed: 10
   _weaponDamage: 1
   _bulletBase: {fileID: 4733608305355661727, guid: 65e647ccc7c52ee4ebcc0ccdc41dc6a0,
     type: 3}
