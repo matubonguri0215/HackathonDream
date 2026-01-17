@@ -8,22 +8,22 @@ public class PlayerBuilder:MonoBehaviour
     private PlayerController _playerController;
     [SerializeField]
     private Transform _playerSpawnPoint;
-    private void Awake()
+  
+    public void BuildPlayer()
     {
-        if(_playerPrefab==null)
+        if (_playerPrefab == null)
         {
             MyDebugLogger.LogError("Player Prefab is not assigned in PlayerBuilder", MyDebugLogger.LogCategory.Initialization);
             return;
         }
 
         Vector3 spawnPoint = _playerSpawnPoint != null ? _playerSpawnPoint.position : Vector3.zero;
-       
-        Player playerInstance=Instantiate(_playerPrefab,spawnPoint,Quaternion.identity);
-        _playerController =new PlayerController(playerInstance);
+
+        Player playerInstance = Instantiate(_playerPrefab, spawnPoint, Quaternion.identity);
+        _playerController = new PlayerController(playerInstance);
         MainLoopEntry.Instance.RegisterStartable(_playerController);
         MainLoopEntry.Instance.RegisterUpdatable(_playerController);
         PlayerDataProvider.InitProvider(playerInstance);
-
     }
 
 }
