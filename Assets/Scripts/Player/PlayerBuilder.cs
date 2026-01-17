@@ -10,6 +10,11 @@ public class PlayerBuilder:MonoBehaviour
     private Transform _playerSpawnPoint;
     private void Awake()
     {
+        if(_playerPrefab==null)
+        {
+            MyDebugLogger.LogError("Player Prefab is not assigned in PlayerBuilder", MyDebugLogger.LogCategory.Initialization);
+            return;
+        }
         Vector3 spawnPoint = _playerSpawnPoint != null ? _playerSpawnPoint.position : Vector3.zero;
        
         Player playerInstance=Instantiate(_playerPrefab,spawnPoint,Quaternion.identity);
