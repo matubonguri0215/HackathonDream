@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour, IDamageable,IHealable
 {
     [SerializeField]
     private PlayerStatus _status;
@@ -61,7 +61,10 @@ public class Player : MonoBehaviour, IDamageable
 
     }
 
-    
+    void IHealable.Heal(int healAmount)
+    {
+        _status.HP += healAmount;
+    }
 }
 
 public interface IWeaponCoolTimeGetable
