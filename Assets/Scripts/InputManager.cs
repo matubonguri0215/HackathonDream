@@ -43,9 +43,8 @@ namespace Input
                 Vector2 gamepadInput = Gamepad.current != null ? Gamepad.current.rightStick.ReadValue() : Vector2.zero;
 
                 // ‚Ç‚¿‚ç‚©“ü—Í‚³‚ê‚Ä‚¢‚é•û‚ð—Dæ
-                return mouseInput.magnitude > 0.01f ? mouseInput : gamepadInput;
+                return gamepadInput.magnitude > 0.01f ? gamepadInput : mouseInput;
             }
-
             return Gamepad.current != null ? Gamepad.current.rightStick.ReadValue() : Vector2.zero;
         }
 
@@ -92,7 +91,7 @@ namespace Input
                 ActionType.AimLock =>
                     (Mouse.current?.middleButton.wasPressedThisFrame ?? false) || (Gamepad.current?.rightStickButton.wasPressedThisFrame ?? false),
                 ActionType.WeaponSelector =>
-                    Keyboard.current?.spaceKey.wasPressedThisFrame ?? false,
+                    (Keyboard.current?.spaceKey.wasPressedThisFrame ?? false) || (Gamepad.current?.leftShoulder.wasPressedThisFrame ?? false),
                 ActionType.Weapon1 =>
                     Keyboard.current?.digit1Key.wasPressedThisFrame ?? false,
                 ActionType.Weapon2 =>
@@ -116,7 +115,7 @@ namespace Input
                 ActionType.AimLock =>
                     (Mouse.current?.middleButton.isPressed ?? false) || (Gamepad.current?.rightStickButton.isPressed ?? false),
                 ActionType.WeaponSelector =>
-                    Keyboard.current?.spaceKey.isPressed ?? false,
+                    (Keyboard.current?.spaceKey.isPressed ?? false) || (Gamepad.current?.leftShoulder.isPressed ?? false),
                 ActionType.Weapon1 =>
                     Keyboard.current?.digit1Key.isPressed ?? false,
                 ActionType.Weapon2 =>
@@ -139,7 +138,7 @@ namespace Input
                 ActionType.AimLock =>
                     (Mouse.current?.middleButton.wasReleasedThisFrame ?? false) || (Gamepad.current?.rightStickButton.wasReleasedThisFrame ?? false),
                 ActionType.WeaponSelector =>
-                    Keyboard.current?.spaceKey.wasReleasedThisFrame ?? false,
+                    (Keyboard.current?.spaceKey.wasReleasedThisFrame ?? false) || (Gamepad.current?.leftShoulder.wasReleasedThisFrame ?? false),
                 ActionType.Weapon1 =>
                     Keyboard.current?.digit1Key.wasReleasedThisFrame ?? false,
                 ActionType.Weapon2 =>
