@@ -11,5 +11,6 @@ public class EnemyBuilder:MonoBehaviour
         int rnd = Random.Range(0, enemiePrefabs.Length);
         EnemyBase enemy=Instantiate<EnemyBase>(enemiePrefabs[rnd], Vector3.zero, Quaternion.identity);
         EnemyAICaller.Register(enemy);
+        enemy.Inject(PlayerDataProvider.GetPlayer());
     }
 }
