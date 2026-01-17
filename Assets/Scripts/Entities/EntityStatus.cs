@@ -26,6 +26,18 @@ public interface IMoveForceHandle:IMoveForceGetable,IMoveForceSetable{}
 [Serializable]
 public class EntityStatus:IHPHandle,IMoveForceHandle
 {
+    [SerializeField]
+    private int _maxHP;
+    public int MaxHP
+    {
+        get => _maxHP;
+        set
+        {
+            _maxHP = value;
+            OnMaxHPChanged.Invoke(_maxHP);
+        }
+    }
+    public event Action<int> OnMaxHPChanged;
 
     [SerializeField]
     protected int _hp;
