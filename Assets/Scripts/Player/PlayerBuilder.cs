@@ -16,6 +16,7 @@ public class PlayerBuilder:MonoBehaviour
         _playerController =new PlayerController(playerInstance);
         MainLoopEntry.Instance.RegisterStartable(_playerController);
         MainLoopEntry.Instance.RegisterUpdatable(_playerController);
+        PlayerDataProvider.InitProvider(playerInstance);
 
     }
 
