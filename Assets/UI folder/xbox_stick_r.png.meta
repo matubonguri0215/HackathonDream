@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e97f3fbb34b6b6d46baafcab713d7c5e
+guid: f6c9da429d7fadb4dbbc3be6be9cd9af
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      xbox_stick_r_0: -5313271606796292114
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

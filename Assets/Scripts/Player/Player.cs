@@ -21,15 +21,15 @@ public class Player : MonoBehaviour, IDamageable
 
     public void Init()
     {
-        
-        
+
+
         _state = new PlayerState();
 
         InitComponent();
     }
 
 
-    
+
     private void InitComponent()
     {
         _moveComponent = GetComponent<PlayerMoveComponent>();
@@ -37,21 +37,27 @@ public class Player : MonoBehaviour, IDamageable
         {
             _moveComponent = this.gameObject.AddComponent<PlayerMoveComponent>();
         }
-        Debug.Log("MoveForce "+_status.MoveForce);
+        Debug.Log("MoveForce " + _status.MoveForce);
         _moveComponent.Inject(_status);
         //武器生成を行うならここで行う
 
     }
 
-    public void Controll(Vector2 inputL,Vector2 inputR, bool isShot, bool isCharge)
+    public void Controll(Vector2 inputL, Vector2 inputR, bool isShot, bool isCharge)
     {
         _moveComponent.OnCallMove(inputL, Time.deltaTime);
+        Vector3 dir = inputR;
+        float z = (Mathf.Atan2(inputR.y, inputR.x)-Mathf.PI/2)*Mathf.Rad2Deg;
+        this.gameObject.transform.rotation = Quaternion.Euler(0,0,z);
     }
 
     void IDamageable.Damage(int damage)
     {
         _status.HP -= damage;
+
     }
+
+    
 }
 
 public interface IWeaponCoolTimeGetable

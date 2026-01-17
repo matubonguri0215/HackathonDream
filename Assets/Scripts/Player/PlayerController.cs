@@ -40,7 +40,7 @@ public class PlayerController:IStartable, IUpdatable
 
     //毎フレーム呼び出しなのでインライン化
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Controll(Vector2 inputL,Vector2 inputR, bool isShot, bool isCharge)
+    public void Controll(Vector2 inputL,Vector2 inputR ,bool isShot, bool isCharge)
     {
         _player.Controll(inputL, inputR,isShot, isCharge);
     }
